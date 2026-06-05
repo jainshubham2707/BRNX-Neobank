@@ -1,7 +1,7 @@
-# Borderless — mock prototype
+# brnx — mock prototype
 
-A clickable, mocked-data prototype of the Borderless dual-rail neobank
-described in `../Dual-Rail-Neobank-PRD.docx`, styled to the brand identity in
+A clickable, DB-backed prototype of the brnx dual-rail neobank described
+in `../Dual-Rail-Neobank-PRD.docx`, styled to the brand identity in
 `../borderless-brand-identity.html`.
 
 No backend, no integrations, no database. All state lives in TypeScript files

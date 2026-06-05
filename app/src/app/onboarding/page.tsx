@@ -30,7 +30,7 @@ export default function OnboardingPage() {
   return (
     <PhoneFrame>
       <div className="min-h-dvh flex flex-col bg-canvas">
-        <header className="px-5 pt-14 pb-3 border-b border-ink-100 bg-white">
+        <header className="px-5 pt-11 pb-3 border-b border-ink-100 bg-white">
           <div className="flex items-center justify-between">
             <Logo size="sm" />
             <span className="font-mono text-[11px] text-ink-500 tracking-widest uppercase">
@@ -451,7 +451,7 @@ function Done({ tier }: { tier: Tier }) {
       </p>
       <div className="mt-auto pt-8">
         <Button onClick={() => router.push("/home")} size="lg" full>
-          Open Borderless
+          Open brnx
         </Button>
       </div>
     </>

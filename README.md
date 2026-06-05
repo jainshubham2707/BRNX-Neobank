@@ -1,6 +1,6 @@
-# Borderless — Dual-Rail Neobank (UAE)
+# brnx — Dual-Rail Neobank (UAE)
 
-A clickable, DB-backed prototype of **Borderless**, a UAE-targeted neobank with
+A clickable, DB-backed prototype of **brnx**, a UAE-targeted neobank with
 two synchronized money rails behind one balance: a USD account and a USDC
 wallet.
 

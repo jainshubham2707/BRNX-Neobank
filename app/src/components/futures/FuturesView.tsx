@@ -424,7 +424,7 @@ function OptIn({ onOpt }: { onOpt: () => void }) {
           Stocks, commodities, pre-IPO
         </div>
         <p className="text-brand-100/90 text-[13.5px] mt-2">
-          Trade perpetuals routed to Hyperliquid via Borderless builder codes.
+          Trade perpetuals routed to Hyperliquid via brnx builder codes.
           Collateral is USDC, held in a separate futures wallet — isolated from
           your spendable balance.
         </p>
@@ -438,7 +438,7 @@ function OptIn({ onOpt }: { onOpt: () => void }) {
           <li>• Leveraged products. Losses can exceed deposited margin.</li>
           <li>• Liquidation is automatic — set leverage low if you&apos;re new.</li>
           <li>• Pre-IPO futures track private market interest, not fundamentals.</li>
-          <li>• Borderless takes a small builder-code fee on each trade.</li>
+          <li>• brnx takes a small builder-code fee on each trade.</li>
         </ul>
       </Card>
 
@@ -451,7 +451,7 @@ function OptIn({ onOpt }: { onOpt: () => void }) {
         />
         <span className="text-[13px] text-ink-700 leading-snug">
           I understand futures carry the risk of losing my margin and that
-          Borderless does not provide investment advice.
+          brnx does not provide investment advice.
         </span>
       </label>
 

@@ -22,7 +22,7 @@ export default function SigninPage() {
   return (
     <PhoneFrame>
       <div className="min-h-dvh flex flex-col bg-canvas">
-        <header className="px-5 pt-14 pb-3">
+        <header className="px-5 pt-11 pb-3">
           <Logo size="sm" />
         </header>
 

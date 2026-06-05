@@ -43,7 +43,7 @@ export default function HomePage() {
 
   return (
     <>
-      <header className="px-4 pt-14 pb-3 flex items-center justify-between">
+      <header className="px-4 pt-11 pb-3 flex items-center justify-between">
         <Logo size="md" />
         <Link
           href="/profile"
