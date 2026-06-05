@@ -30,7 +30,7 @@ export default function StartPage() {
           <h1 className="font-display font-extrabold text-[44px] leading-[1.02] tracking-tight mt-auto">
             Hold dollars.
             <br />
-            Spend brnx.
+            Spend BRNX.
           </h1>
           <p className="text-brand-100/90 mt-3 text-[15px] max-w-[300px]">
             Your USD account to Spend, Invest and Earn.

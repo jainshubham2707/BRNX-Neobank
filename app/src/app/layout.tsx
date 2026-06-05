@@ -24,8 +24,8 @@ const plexMono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "brnx — Dual-rail money",
-  description: "Hold dollars, spend brnx. UAE dual-rail neobank.",
+  title: "BRNX — Dual-rail money",
+  description: "Hold dollars, spend BRNX. UAE dual-rail neobank.",
 };
 
 export default function RootLayout({

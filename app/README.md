@@ -1,6 +1,6 @@
-# brnx — mock prototype
+# BRNX — mock prototype
 
-A clickable, DB-backed prototype of the brnx dual-rail neobank described
+A clickable, DB-backed prototype of the BRNX dual-rail neobank described
 in `../Dual-Rail-Neobank-PRD.docx`, styled to the brand identity in
 `../borderless-brand-identity.html`.
 

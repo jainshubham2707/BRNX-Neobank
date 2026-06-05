@@ -1,6 +1,6 @@
-# brnx — Dual-Rail Neobank (UAE)
+# BRNX — Dual-Rail Neobank (UAE)
 
-A clickable, DB-backed prototype of **brnx**, a UAE-targeted neobank with
+A clickable, DB-backed prototype of **BRNX**, a UAE-targeted neobank with
 two synchronized money rails behind one balance: a USD account and a USDC
 wallet.
 

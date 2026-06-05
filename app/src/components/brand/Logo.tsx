@@ -21,7 +21,7 @@ export function Logo({ knockout = false, size = "md" }: Props) {
           knockout ? "text-white" : "text-brand-700"
         }`}
       >
-        brnx
+        BRNX
       </span>
     </div>
   );

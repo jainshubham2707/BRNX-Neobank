@@ -451,7 +451,7 @@ function Done({ tier }: { tier: Tier }) {
       </p>
       <div className="mt-auto pt-8">
         <Button onClick={() => router.push("/home")} size="lg" full>
-          Open brnx
+          Open BRNX
         </Button>
       </div>
     </>
