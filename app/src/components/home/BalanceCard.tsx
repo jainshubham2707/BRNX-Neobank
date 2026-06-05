@@ -36,7 +36,7 @@ export function BalanceCard({ totalUSD, fiatUSD, usdcUSD }: Props) {
       <div className="relative px-5 pt-5 pb-5">
         <div className="flex items-center justify-between">
           <span className="text-[12px] text-brand-200 tracking-[0.18em] uppercase font-mono">
-            {dual ? "Total balance" : "Balance"}
+            Cash balance
           </span>
         </div>
         <div className="font-display font-extrabold text-[44px] tabular leading-[1.04] mt-1.5">
