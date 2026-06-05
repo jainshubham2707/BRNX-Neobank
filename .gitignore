@@ -1,0 +1,33 @@
+# Dependencies
+node_modules/
+
+# Next.js
+.next/
+out/
+*.tsbuildinfo
+next-env.d.ts
+
+# Environment / secrets
+.env
+.env.local
+.env.*.local
+
+# Drizzle generated migrations are tracked, but local generated artifacts aren't
+drizzle/meta/_journal.json.bak
+
+# Build / cache
+.turbo
+.vercel
+.cache/
+
+# Editor / OS
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.log
+.claude/
+
+# Misc
+*.tmp
+.tsbuildinfo

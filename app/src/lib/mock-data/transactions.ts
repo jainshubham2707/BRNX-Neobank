@@ -1,0 +1,395 @@
+import type { PersonaKey, Transaction } from "../types";
+
+const now = (offsetHours: number) =>
+  new Date(Date.now() - offsetHours * 3_600_000).toISOString();
+
+const TX_HASH_A =
+  "0x9f3c8e1d2b4a5c6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2c3d4e5f6a7b8c3ad1";
+const TX_HASH_B =
+  "0x2a1b3c4d5e6f7081928374659078abcdef0123456789abcdef0123456789abcd";
+const TX_HASH_C =
+  "0x77ab2c8e9d3f4a5b6c7e8f9a0b1c2d3e4f5a6b7c8d9e0f1a2b3c4d5e6f7a89ef";
+const TX_HASH_D =
+  "0xfe33aa11bb22cc33dd44ee55ff667788991011121314151617181920212223e3";
+const TX_HASH_E =
+  "0xa1b2c3d4e5f6071829304a5b6c7d8e9f0a1b2c3d4e5f60718293f4f5f6f7f8f9";
+
+// ─────────────────────────────────────────────────────────────────────────
+// STABLECOIN-ONLY (no fiat surfaces at all)
+// ─────────────────────────────────────────────────────────────────────────
+const STABLECOIN: Transaction[] = [
+  {
+    id: "tx_s_spend",
+    category: "spend",
+    rail: "USDC",
+    direction: "out",
+    amount: 24.6,
+    status: "settled",
+    timestamp: now(4),
+    title: "Starbucks, Dubai",
+    subtitle: "Stablecoin card · USDC→USD at auth",
+    meta: {
+      merchant: "Starbucks",
+      merchantCity: "Dubai",
+      cardId: "card_c_stable",
+      originalAmount: 90.3,
+      originalCurrency: "AED",
+      authConversion: { usdcSpent: 24.62, usdEquivalent: 24.6, rate: 0.99917 },
+      txHash: TX_HASH_E,
+    },
+  },
+  {
+    id: "tx_s_invest",
+    category: "invest",
+    rail: "USDC",
+    direction: "out",
+    amount: 1_056.0,
+    status: "settled",
+    timestamp: now(40),
+    title: "Buy PAXG",
+    subtitle: "0.40 tokens @ $2,640.00",
+    meta: {
+      instrumentSymbol: "PAXG",
+      instrumentKind: "commodity-token",
+      fillPrice: 2_640.0,
+      quantity: 0.4,
+    },
+  },
+  {
+    id: "tx_s_deposit",
+    category: "load",
+    rail: "USDC",
+    direction: "in",
+    amount: 5_000,
+    status: "settled",
+    timestamp: now(72),
+    title: "USDC deposit",
+    subtitle: "From external wallet",
+    meta: {
+      loadSource: "usdc-deposit",
+      txHash: TX_HASH_B,
+      confirmations: 64,
+    },
+  },
+  {
+    id: "tx_s_yield",
+    category: "earn",
+    rail: "USDC",
+    direction: "in",
+    amount: 1.84,
+    status: "settled",
+    timestamp: now(120),
+    title: "Yield accrued · USDC Treasury",
+    subtitle: "4.85% APY",
+    meta: {
+      earnProductId: "stablecoin-treasury",
+      earnProductName: "USDC Treasury",
+      apyAtAction: 4.85,
+    },
+  },
+];
+
+// ─────────────────────────────────────────────────────────────────────────
+// ACTIVE — both rails
+// ─────────────────────────────────────────────────────────────────────────
+const ACTIVE: Transaction[] = [
+  {
+    id: "tx_a_convert",
+    category: "convert",
+    rail: "mixed",
+    direction: "out",
+    amount: 1_500,
+    fee: 1.2,
+    status: "settling",
+    timestamp: now(3),
+    title: "Convert USD → USDC",
+    subtitle: "Settling — ~30s",
+    meta: {
+      fromRail: "USD",
+      toRail: "USDC",
+      fromAmount: 1_500,
+      toAmount: 1_498.8,
+      rate: 0.9992,
+      confirmations: 3,
+    },
+  },
+  {
+    id: "tx_a_spend1",
+    category: "spend",
+    rail: "USDC",
+    direction: "out",
+    amount: 84.2,
+    status: "settled",
+    timestamp: now(9),
+    title: "Carrefour, Dubai",
+    subtitle: "Stablecoin card · USDC→USD at auth",
+    meta: {
+      merchant: "Carrefour",
+      merchantCity: "Dubai",
+      cardId: "card_c_active",
+      originalAmount: 309.45,
+      originalCurrency: "AED",
+      fxRate: 3.6725,
+      authConversion: { usdcSpent: 84.27, usdEquivalent: 84.2, rate: 0.99917 },
+      txHash: TX_HASH_A,
+    },
+  },
+  {
+    id: "tx_a_invest1",
+    category: "invest",
+    rail: "USD",
+    direction: "out",
+    amount: 1_000,
+    fee: 0,
+    status: "settled",
+    timestamp: now(28),
+    title: "Buy AAPL",
+    subtitle: "5.04 sh @ $198.10",
+    meta: {
+      instrumentSymbol: "AAPL",
+      instrumentKind: "equity",
+      fillPrice: 198.1,
+      quantity: 5.04,
+    },
+  },
+  {
+    id: "tx_a_load_swift",
+    category: "load",
+    rail: "USD",
+    direction: "in",
+    amount: 5_000,
+    status: "settled",
+    timestamp: now(48),
+    title: "SWIFT deposit · USD",
+    subtitle: "UTR 8841",
+    meta: { loadSource: "swift", bankRef: "UTR-8841-22JAN" },
+  },
+  {
+    id: "tx_a_earn_yield",
+    category: "earn",
+    rail: "USD",
+    direction: "in",
+    amount: 3.74,
+    status: "settled",
+    timestamp: now(72),
+    title: "Yield accrued · US T-Bill",
+    subtitle: "3.5% fixed",
+    meta: {
+      earnProductId: "fiat-treasury",
+      earnProductName: "US T-Bill",
+      apyAtAction: 3.5,
+    },
+  },
+  {
+    id: "tx_a_spend2",
+    category: "spend",
+    rail: "USD",
+    direction: "out",
+    amount: 32.5,
+    status: "settled",
+    timestamp: now(78),
+    title: "Costa Coffee",
+    subtitle: "Fiat card",
+    meta: {
+      merchant: "Costa Coffee",
+      merchantCity: "Dubai",
+      cardId: "card_f_active",
+      originalAmount: 32.5,
+      originalCurrency: "USD",
+    },
+  },
+  {
+    id: "tx_a_load_onramp",
+    category: "load",
+    rail: "USD",
+    direction: "in",
+    amount: 2_000,
+    fee: 11.4,
+    status: "settled",
+    timestamp: now(96),
+    title: "AED onramp · USD",
+    subtitle: "AED 7,345 @ 3.6725",
+    meta: {
+      loadSource: "aed-onramp",
+      aedAmount: 7_345,
+      aedToUsdRate: 3.6725,
+      bankRef: "OR-2241",
+    },
+  },
+  {
+    id: "tx_a_deposit_usdc",
+    category: "load",
+    rail: "USDC",
+    direction: "in",
+    amount: 4_500,
+    status: "settled",
+    timestamp: now(120),
+    title: "USDC deposit",
+    subtitle: "From external wallet",
+    meta: {
+      loadSource: "usdc-deposit",
+      txHash: TX_HASH_B,
+      confirmations: 64,
+    },
+  },
+];
+
+// ─────────────────────────────────────────────────────────────────────────
+// POWER
+// ─────────────────────────────────────────────────────────────────────────
+const POWER: Transaction[] = [
+  {
+    id: "tx_p_futures_pnl",
+    category: "futures",
+    rail: "USDC",
+    direction: "in",
+    amount: 345.4,
+    status: "settled",
+    timestamp: now(1),
+    title: "TSLA-FUT · unrealized PnL",
+    subtitle: "Long 5×",
+    meta: { futuresSymbol: "TSLA-FUT", futuresSide: "long", leverage: 5 },
+  },
+  {
+    id: "tx_p_spend1",
+    category: "spend",
+    rail: "USDC",
+    direction: "out",
+    amount: 412.0,
+    status: "settled",
+    timestamp: now(5),
+    title: "Emirates Airlines",
+    subtitle: "Stablecoin card · USDC→USD at auth",
+    meta: {
+      merchant: "Emirates Airlines",
+      merchantCity: "Dubai",
+      cardId: "card_c_power",
+      originalAmount: 412.0,
+      originalCurrency: "USD",
+      authConversion: { usdcSpent: 412.34, usdEquivalent: 412.0, rate: 0.99917 },
+      txHash: TX_HASH_C,
+    },
+  },
+  {
+    id: "tx_p_invest1",
+    category: "invest",
+    rail: "USDC",
+    direction: "out",
+    amount: 2_000,
+    status: "settled",
+    timestamp: now(10),
+    title: "Buy TSLAx",
+    subtitle: "6.95 tokens @ $287.91",
+    meta: {
+      instrumentSymbol: "TSLAx",
+      instrumentKind: "xstock",
+      fillPrice: 287.91,
+      quantity: 6.95,
+    },
+  },
+  {
+    id: "tx_p_convert",
+    category: "convert",
+    rail: "mixed",
+    direction: "out",
+    amount: 8_000,
+    fee: 6.4,
+    status: "settled",
+    timestamp: now(14),
+    title: "Convert USDC → USD",
+    subtitle: "Settled · UTR 5520",
+    meta: {
+      fromRail: "USDC",
+      toRail: "USD",
+      fromAmount: 8_000,
+      toAmount: 7_993.6,
+      rate: 0.9992,
+      bankRef: "UTR-5520",
+      txHash: TX_HASH_D,
+    },
+  },
+  {
+    id: "tx_p_morpho_yield",
+    category: "earn",
+    rail: "USDC",
+    direction: "in",
+    amount: 12.84,
+    status: "settled",
+    timestamp: now(20),
+    title: "Yield accrued · USDC Lending",
+    subtitle: "6.00% APY (variable)",
+    meta: {
+      earnProductId: "morpho-lending",
+      earnProductName: "USDC Lending",
+      apyAtAction: 6.0,
+    },
+  },
+  {
+    id: "tx_p_futures_open",
+    category: "futures",
+    rail: "USDC",
+    direction: "out",
+    amount: 2_400,
+    status: "settled",
+    timestamp: now(36),
+    title: "Open TSLA-FUT long 5×",
+    subtitle: "Margin posted: 2,400 USDC",
+    meta: { futuresSymbol: "TSLA-FUT", futuresSide: "long", leverage: 5 },
+  },
+  {
+    id: "tx_p_spend2",
+    category: "spend",
+    rail: "USD",
+    direction: "out",
+    amount: 1_240.0,
+    status: "settled",
+    timestamp: now(50),
+    title: "Apple Store",
+    subtitle: "Fiat card",
+    meta: {
+      merchant: "Apple Store",
+      merchantCity: "Dubai",
+      cardId: "card_f_power",
+      originalAmount: 1_240.0,
+      originalCurrency: "USD",
+    },
+  },
+  {
+    id: "tx_p_load_swift",
+    category: "load",
+    rail: "USD",
+    direction: "in",
+    amount: 25_000,
+    status: "settled",
+    timestamp: now(96),
+    title: "SWIFT deposit · USD",
+    subtitle: "UTR 9920 · salary",
+    meta: { loadSource: "swift", bankRef: "UTR-9920" },
+  },
+  {
+    id: "tx_p_treasury_yield",
+    category: "earn",
+    rail: "USD",
+    direction: "in",
+    amount: 18.42,
+    status: "settled",
+    timestamp: now(140),
+    title: "Yield accrued · US T-Bill",
+    subtitle: "3.5% fixed",
+    meta: {
+      earnProductId: "fiat-treasury",
+      earnProductName: "US T-Bill",
+      apyAtAction: 3.5,
+    },
+  },
+];
+
+const TRANSACTIONS: Record<PersonaKey, Transaction[]> = {
+  stablecoin: STABLECOIN,
+  active: ACTIVE,
+  power: POWER,
+};
+
+export function getTransactions(key: PersonaKey): Transaction[] {
+  return TRANSACTIONS[key];
+}

@@ -1,0 +1,47 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --blue: #075abd;
+  --deep: #054086;
+  --ink: #0b1220;
+  --canvas: #f8fafc;
+}
+
+html,
+body {
+  background: #0b1220;
+}
+
+body {
+  color: var(--ink);
+  font-feature-settings: "ss01", "cv11";
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+@layer utilities {
+  .tabular {
+    font-variant-numeric: tabular-nums;
+  }
+  .glass {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  .scrollbar-hide {
+    scrollbar-width: none;
+  }
+}
+
+/* Phone frame outside */
+.outside-bg {
+  background:
+    radial-gradient(800px 400px at 80% 0%, rgba(34, 211, 238, 0.06), transparent 60%),
+    radial-gradient(900px 500px at 0% 100%, rgba(7, 90, 189, 0.12), transparent 60%),
+    #0b1220;
+}
