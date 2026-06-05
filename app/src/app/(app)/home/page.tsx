@@ -75,7 +75,7 @@ export default function HomePage() {
         )}
 
         {totals.cash > 1000 &&
-          totals.earn / Math.max(totals.cash, 1) < 0.3 && (
+          totals.earn / Math.max(totals.cash, 1) < 0.5 && (
             <Section className="pt-1">
               <Link href="/earn">
                 <Card className="bg-emerald/5 border-emerald/20 flex items-center gap-3">
