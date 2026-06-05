@@ -187,16 +187,6 @@ export default function OtpPage() {
             )}
           </div>
 
-          {matched && (
-            <div className="mt-auto pt-6 text-[12px] text-ink-500 text-center font-mono">
-              Demo match →{" "}
-              {matched === "stablecoin"
-                ? "Stablecoin-only"
-                : matched === "active"
-                  ? "Both rails"
-                  : "Power user"}
-            </div>
-          )}
         </div>
       </div>
     </PhoneFrame>
