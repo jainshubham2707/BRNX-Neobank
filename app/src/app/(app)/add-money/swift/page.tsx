@@ -122,7 +122,7 @@ export default function SwiftPage() {
         title="Simulate SWIFT credit"
       >
         <p className="text-[13px] text-ink-500 leading-snug">
-          Demo helper. Credits your USD balance as if the wire just settled.
+          Credits your USD balance as if the wire just settled.
         </p>
         <div className="mt-4">
           <div className="text-[11.5px] uppercase tracking-wider text-ink-500 font-mono">

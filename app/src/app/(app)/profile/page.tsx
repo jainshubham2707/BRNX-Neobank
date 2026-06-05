@@ -125,7 +125,7 @@ export default function ProfilePage() {
           </Section>
         )}
 
-        <Section title="Demo · persona switcher" className="px-0">
+        <Section title="Switch account" className="px-0">
           <Card padded={false}>
             {PERSONA_KEYS.map((key) => {
               const p = PERSONAS[key];
@@ -161,9 +161,6 @@ export default function ProfilePage() {
               );
             })}
           </Card>
-          <p className="text-[12px] text-ink-500 mt-2 px-1 leading-snug">
-            Switches the demo data shown across the app. Stored locally.
-          </p>
         </Section>
 
         <Section title="App" className="px-0">

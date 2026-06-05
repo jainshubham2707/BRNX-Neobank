@@ -64,9 +64,6 @@ export default function SigninPage() {
           </p>
 
           <div className="mt-8">
-            <div className="text-[11px] uppercase tracking-widest text-ink-500 font-mono mb-2">
-              Demo numbers — tap to autofill
-            </div>
             <div className="grid grid-cols-1 gap-2">
               {PERSONA_KEYS.map((key) => {
                 const p = PERSONAS[key];

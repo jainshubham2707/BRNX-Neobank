@@ -133,7 +133,7 @@ export default function UsdcPage() {
         title="Simulate USDC inbound"
       >
         <p className="text-[13px] text-ink-500 leading-snug">
-          Demo helper. Credits your USDC wallet as if a transfer just confirmed.
+          Credits your USDC wallet as if a transfer just confirmed.
         </p>
         <div className="mt-4">
           <div className="text-[11.5px] uppercase tracking-wider text-ink-500 font-mono">
