@@ -13,17 +13,38 @@ import { KeyValue } from "@/components/ui/KeyValue";
 import { usePersona, useUser } from "@/lib/persona-store";
 import { fmtUSD, fmtPct, fmtNum } from "@/lib/format";
 import { cn } from "@/lib/cn";
+import { assetLogo } from "@/lib/mock-data/instruments";
 
-const MARKETS = [
-  { symbol: "NVDA-FUT", name: "NVIDIA equity future", mark: 146.1, change24h: 2.21 },
-  { symbol: "AAPL-FUT", name: "Apple equity future", mark: 232.4, change24h: 0.82 },
-  { symbol: "TSLA-FUT", name: "Tesla equity future", mark: 322.5, change24h: -1.35 },
-  { symbol: "MSTR-FUT", name: "Strategy equity future", mark: 412.5, change24h: 3.18 },
-  { symbol: "PRE-OPENAI", name: "OpenAI pre-IPO future", mark: 1_215.0, change24h: -2.4 },
-  { symbol: "PRE-STRIPE", name: "Stripe pre-IPO future", mark: 92.5, change24h: 0.0 },
-  { symbol: "XAU-PERP", name: "Gold perpetual", mark: 2_705.4, change24h: 0.46 },
-  { symbol: "XAG-PERP", name: "Silver perpetual", mark: 32.1, change24h: -0.27 },
-  { symbol: "CL-PERP", name: "Crude oil perpetual", mark: 71.85, change24h: 0.62 },
+/**
+ * Map a futures market symbol to the underlying asset key used by assetLogo.
+ *   NVDA-FUT  → NVDA
+ *   PRE-OPENAI → OPENAI
+ *   XAU-PERP   → XAU
+ */
+function logoKey(symbol: string): string {
+  return symbol
+    .replace(/-PERP$/i, "")
+    .replace(/-FUT$/i, "")
+    .replace(/^PRE-/i, "");
+}
+
+const MARKETS: {
+  symbol: string;
+  name: string;
+  mark: number;
+  change24h: number;
+  /** Brand-color fallback for the monogram tile. */
+  brandColor: string;
+}[] = [
+  { symbol: "NVDA-FUT", name: "NVIDIA equity future", mark: 146.1, change24h: 2.21, brandColor: "#76B900" },
+  { symbol: "AAPL-FUT", name: "Apple equity future", mark: 232.4, change24h: 0.82, brandColor: "#0B0B0B" },
+  { symbol: "TSLA-FUT", name: "Tesla equity future", mark: 322.5, change24h: -1.35, brandColor: "#CC0000" },
+  { symbol: "MSTR-FUT", name: "Strategy equity future", mark: 412.5, change24h: 3.18, brandColor: "#F7931A" },
+  { symbol: "PRE-OPENAI", name: "OpenAI pre-IPO future", mark: 1_215.0, change24h: -2.4, brandColor: "#0B0B0B" },
+  { symbol: "PRE-STRIPE", name: "Stripe pre-IPO future", mark: 92.5, change24h: 0.0, brandColor: "#635BFF" },
+  { symbol: "XAU-PERP", name: "Gold perpetual", mark: 2_705.4, change24h: 0.46, brandColor: "#D4AF37" },
+  { symbol: "XAG-PERP", name: "Silver perpetual", mark: 32.1, change24h: -0.27, brandColor: "#C0C0C0" },
+  { symbol: "CL-PERP", name: "Crude oil perpetual", mark: 71.85, change24h: 0.62, brandColor: "#1B1B1B" },
 ];
 
 export function FuturesView() {
@@ -133,8 +154,9 @@ export function FuturesView() {
                 key={p.id}
                 className="px-4 py-4 border-b border-ink-100 last:border-0"
               >
-                <div className="flex items-start justify-between gap-3">
-                  <div className="min-w-0">
+                <div className="flex items-start gap-3">
+                  <MarketLogo symbol={p.symbol} brandColor="#054086" />
+                  <div className="flex-1 min-w-0">
                     <div className="font-display font-bold text-[15px] text-ink leading-tight truncate">
                       {p.symbol}
                     </div>
@@ -192,9 +214,7 @@ export function FuturesView() {
               href="#"
               className="flex items-center gap-3 px-4 py-3 border-b border-ink-100 last:border-0 active:bg-brand-50/40"
             >
-              <div className="w-10 h-10 rounded-xl bg-deep text-white flex items-center justify-center font-display font-bold text-[10px] tracking-tight">
-                {m.symbol.replace("-PERP", "").replace("-FUT", "").replace("PRE-", "")}
-              </div>
+              <MarketLogo symbol={m.symbol} brandColor={m.brandColor} />
               <div className="flex-1 min-w-0">
                 <div className="font-semibold text-[14px] text-ink truncate">
                   {m.symbol}
@@ -288,6 +308,45 @@ function Stat({
       >
         {value}
       </div>
+    </div>
+  );
+}
+
+/** Logo tile for a futures market — uses local /public/logos/* via assetLogo
+ *  with a colored monogram fallback. */
+function MarketLogo({
+  symbol,
+  brandColor,
+}: {
+  symbol: string;
+  brandColor: string;
+}) {
+  const key = logoKey(symbol);
+  const src = assetLogo(key);
+  const [failed, setFailed] = useState(false);
+
+  if (!src || failed) {
+    return (
+      <div
+        style={{ backgroundColor: brandColor }}
+        className="w-10 h-10 rounded-xl flex items-center justify-center text-white font-display font-bold text-[10px] tracking-tight shrink-0"
+      >
+        {key.slice(0, 4)}
+      </div>
+    );
+  }
+
+  return (
+    <div className="w-10 h-10 rounded-xl bg-white border border-ink-100 flex items-center justify-center shrink-0 overflow-hidden">
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src={src}
+        alt=""
+        aria-hidden
+        onError={() => setFailed(true)}
+        loading="lazy"
+        style={{ width: 28, height: 28, objectFit: "contain" }}
+      />
     </div>
   );
 }

@@ -14,6 +14,38 @@ export type Instrument = {
   brandColor: string;
 };
 
+/**
+ * Local asset logo path for a given key (stock ticker, commodity code, or
+ * futures-market name). Returns the public path if we ship a logo for it,
+ * else null (callers fall back to the colored monogram tile).
+ */
+const LOGO_MAP: Record<string, string> = {
+  AAPL: "/logos/AAPL.png",
+  NVDA: "/logos/NVDA.png",
+  MSFT: "/logos/MSFT.png",
+  GOOGL: "/logos/GOOGL.jpg",
+  MSTR: "/logos/MSTR.png",
+  META: "/logos/META.png",
+  SKHY: "/logos/SKHY.png",
+  TSLA: "/logos/TSLA.png",
+  INTC: "/logos/INTC.png",
+  CRCL: "/logos/CRCL.png",
+  COIN: "/logos/COIN.png",
+  PAXG: "/logos/PAXG.png",
+  // Futures markets
+  OPENAI: "/logos/OPENAI.png",
+  STRIPE: "/logos/STRIPE.png",
+  XAU: "/logos/XAU.png",
+  XAG: "/logos/XAG.png",
+  CL: "/logos/CL.png",
+};
+
+/** Lookup a local logo by base key (strips an "x" suffix for tokenized symbols). */
+export function assetLogo(key: string): string | null {
+  const normalized = key.replace(/x$/, "").toUpperCase();
+  return LOGO_MAP[normalized] ?? null;
+}
+
 /** Twelve household-name companies, available on both rails. */
 const COMPANIES = [
   { base: "AAPL", name: "Apple Inc.", domain: "apple.com", brandColor: "#0B0B0B", sector: "Tech", price: 232.41, changePct: 0.82 },

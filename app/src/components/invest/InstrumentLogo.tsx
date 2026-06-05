@@ -2,7 +2,11 @@
 
 import { useState } from "react";
 import { cn } from "@/lib/cn";
-import { logoUrl, type Instrument } from "@/lib/mock-data/instruments";
+import {
+  assetLogo,
+  logoUrl,
+  type Instrument,
+} from "@/lib/mock-data/instruments";
 
 type Props = {
   instrument: Pick<Instrument, "base" | "domain" | "brandColor">;
@@ -10,11 +14,21 @@ type Props = {
   className?: string;
 };
 
+/**
+ * Render order:
+ *  1. local /public/logos/<SYMBOL>.png if we ship one (assetLogo)
+ *  2. Clearbit logo fetched from the brand domain
+ *  3. Colored monogram tile (offline-safe fallback)
+ */
 export function InstrumentLogo({ instrument, size = 40, className }: Props) {
-  const [failed, setFailed] = useState(false);
   const initials = instrument.base.replace(/x$/, "").slice(0, 3);
+  const local = assetLogo(instrument.base);
+  const remote = logoUrl(instrument.domain);
 
-  if (failed) {
+  const [src, setSrc] = useState<string | null>(local ?? remote);
+  const [failed, setFailed] = useState(false);
+
+  if (failed || !src) {
     return (
       <div
         style={{
@@ -42,12 +56,19 @@ export function InstrumentLogo({ instrument, size = 40, className }: Props) {
     >
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
-        src={logoUrl(instrument.domain)}
+        src={src}
         alt=""
         aria-hidden
-        onError={() => setFailed(true)}
+        onError={() => {
+          // If the local logo somehow failed, try Clearbit before giving up.
+          if (src === local && remote) {
+            setSrc(remote);
+          } else {
+            setFailed(true);
+          }
+        }}
         loading="lazy"
-        style={{ width: size * 0.7, height: size * 0.7, objectFit: "contain" }}
+        style={{ width: size * 0.72, height: size * 0.72, objectFit: "contain" }}
       />
     </div>
   );
