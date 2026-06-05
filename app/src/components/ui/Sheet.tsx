@@ -59,7 +59,7 @@ export function Sheet({ open, onClose, children, title, size = "auto" }: Props) 
         role="dialog"
         aria-modal="true"
         className={cn(
-          "absolute left-0 right-0 bottom-0 bg-white rounded-t-3xl shadow-lift transition-transform duration-200 ease-out",
+          "absolute left-0 right-0 bottom-0 bg-surface rounded-t-3xl shadow-lift transition-transform duration-200 ease-out",
           size === "tall" ? "max-h-[90%]" : "max-h-[85%]",
           visible ? "translate-y-0" : "translate-y-full"
         )}

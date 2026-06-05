@@ -30,7 +30,7 @@ export default function OnboardingPage() {
   return (
     <PhoneFrame>
       <div className="min-h-dvh flex flex-col bg-canvas">
-        <header className="px-5 pt-11 pb-3 border-b border-ink-100 bg-white">
+        <header className="px-5 pt-11 pb-3 border-b border-ink-100 bg-surface">
           <div className="flex items-center justify-between">
             <Logo size="sm" />
             <span className="font-mono text-[11px] text-ink-500 tracking-widest uppercase">
@@ -148,7 +148,7 @@ function TierOption({
     <button
       onClick={onClick}
       className={cn(
-        "w-full text-left rounded-2xl border bg-white p-4 transition-all",
+        "w-full text-left rounded-2xl border bg-surface p-4 transition-all",
         selected
           ? "border-brand ring-2 ring-brand-200 shadow-soft"
           : "border-ink-100"
@@ -295,7 +295,7 @@ function CheckLine({
     return () => clearTimeout(t);
   }, [done, delay]);
   return (
-    <li className="flex items-center gap-3 py-2.5 px-3.5 rounded-xl bg-white border border-ink-100">
+    <li className="flex items-center gap-3 py-2.5 px-3.5 rounded-xl bg-surface border border-ink-100">
       <span
         className={cn(
           "w-6 h-6 rounded-full flex items-center justify-center text-white text-xs font-bold transition-colors",

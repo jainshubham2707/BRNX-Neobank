@@ -153,7 +153,7 @@ export default function OtpPage() {
                 onPaste={(e) => onPaste(i, e)}
                 onFocus={(e) => e.currentTarget.select()}
                 className={cn(
-                  "h-14 text-center font-display font-bold text-[26px] tabular rounded-xl border bg-white outline-none transition-colors",
+                  "h-14 text-center font-display font-bold text-[26px] tabular rounded-xl border bg-surface outline-none transition-colors",
                   d ? "border-brand" : "border-ink-100",
                   "focus:border-brand focus:ring-2 focus:ring-brand-200"
                 )}

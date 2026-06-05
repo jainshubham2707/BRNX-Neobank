@@ -64,7 +64,7 @@ export function QuickActions({ hasFiat }: { hasFiat: boolean }) {
           key={a.href}
           href={a.href}
           className={cn(
-            "flex flex-col items-center justify-center gap-2 py-3.5 rounded-2xl border border-ink-100 bg-white",
+            "flex flex-col items-center justify-center gap-2 py-3.5 rounded-2xl border border-ink-100 bg-surface",
             "active:bg-brand-50 transition-colors"
           )}
         >

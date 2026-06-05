@@ -1,14 +1,16 @@
 import type { Config } from "tailwindcss";
 
 const config: Config = {
+  darkMode: "class",
   content: ["./src/**/*.{ts,tsx}"],
   theme: {
     extend: {
       colors: {
+        // Brand colors stay literal — same in both themes.
         brand: {
           DEFAULT: "#075ABD",
-          50: "#F0F5FB",
-          100: "#DCE8F6",
+          50: "rgb(var(--brand-50) / <alpha-value>)",
+          100: "rgb(var(--brand-100) / <alpha-value>)",
           200: "#BAD1ED",
           300: "#8FB5E1",
           400: "#518CD1",
@@ -23,16 +25,19 @@ const config: Config = {
           700: "#042D5E",
           900: "#02162E",
         },
+        // Themeable neutrals — bound to CSS vars so they flip with .dark.
         ink: {
-          DEFAULT: "#0B1220",
-          900: "#0B1220",
-          800: "#1E293B",
-          700: "#334155",
-          500: "#64748B",
-          300: "#CBD5E1",
-          100: "#F1F5F9",
+          DEFAULT: "rgb(var(--ink) / <alpha-value>)",
+          900: "rgb(var(--ink-900) / <alpha-value>)",
+          800: "rgb(var(--ink-800) / <alpha-value>)",
+          700: "rgb(var(--ink-700) / <alpha-value>)",
+          500: "rgb(var(--ink-500) / <alpha-value>)",
+          300: "rgb(var(--ink-300) / <alpha-value>)",
+          100: "rgb(var(--ink-100) / <alpha-value>)",
         },
-        canvas: "#F8FAFC",
+        canvas: "rgb(var(--canvas) / <alpha-value>)",
+        // Surface used by cards, sheets, top/tab bars (replaces literal white).
+        surface: "rgb(var(--surface) / <alpha-value>)",
         emerald: { DEFAULT: "#059669" },
         amber: { DEFAULT: "#D97706" },
         rose: { DEFAULT: "#DC2626" },

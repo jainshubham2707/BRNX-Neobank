@@ -9,7 +9,7 @@ export function Card({ className, padded = true, ...rest }: Props) {
   return (
     <div
       className={cn(
-        "bg-white border border-ink-100 rounded-2xl shadow-soft",
+        "bg-surface border border-ink-100 rounded-2xl shadow-soft",
         padded && "p-4",
         className
       )}

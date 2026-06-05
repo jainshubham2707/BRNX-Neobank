@@ -51,7 +51,7 @@ export default function CardsPage() {
                 "px-3 py-1.5 rounded-full text-[12px] font-semibold transition-colors",
                 i === activeIdx
                   ? "bg-ink text-white"
-                  : "bg-white text-ink-700 border border-ink-100"
+                  : "bg-surface text-ink-700 border border-ink-100"
               )}
             >
               {c.label}
@@ -119,7 +119,7 @@ function ActionTile({
   href?: string;
 }) {
   const inner = (
-    <div className="flex flex-col items-center gap-1.5 bg-white border border-ink-100 rounded-2xl py-3 active:bg-brand-50">
+    <div className="flex flex-col items-center gap-1.5 bg-surface border border-ink-100 rounded-2xl py-3 active:bg-brand-50">
       <span className="w-8 h-8 rounded-lg bg-brand-50 text-brand-700 flex items-center justify-center">
         {icon === "freeze" && "❄"}
         {icon === "limits" && "$"}

@@ -72,7 +72,7 @@ export default function SigninPage() {
                     key={key}
                     onClick={() => setPhone(p.phone.replace(/^\+971\s?/, ""))}
                     className={cn(
-                      "w-full text-left px-4 py-3 rounded-2xl bg-white border border-ink-100",
+                      "w-full text-left px-4 py-3 rounded-2xl bg-surface border border-ink-100",
                       "active:bg-brand-50 transition-colors flex items-center gap-3"
                     )}
                   >

@@ -50,7 +50,7 @@ export function InstrumentLogo({ instrument, size = 40, className }: Props) {
     <div
       style={{ width: size, height: size }}
       className={cn(
-        "rounded-xl bg-white border border-ink-100 flex items-center justify-center shrink-0 overflow-hidden",
+        "rounded-xl bg-surface border border-ink-100 flex items-center justify-center shrink-0 overflow-hidden",
         className
       )}
     >

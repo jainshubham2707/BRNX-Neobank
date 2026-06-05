@@ -93,7 +93,7 @@ export default function ActivityPage() {
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search merchant, reference, amount"
-            className="w-full h-11 pl-9 pr-3 rounded-2xl bg-white border border-ink-100 text-[14px] outline-none focus:border-brand"
+            className="w-full h-11 pl-9 pr-3 rounded-2xl bg-surface border border-ink-100 text-[14px] outline-none focus:border-brand"
           />
         </div>
 
@@ -107,7 +107,7 @@ export default function ActivityPage() {
                 "shrink-0 px-3 py-1.5 rounded-full text-[12px] font-semibold transition-colors",
                 cat === c.key
                   ? "bg-ink text-white"
-                  : "bg-white text-ink-700 border border-ink-100"
+                  : "bg-surface text-ink-700 border border-ink-100"
               )}
             >
               {c.label}
@@ -126,7 +126,7 @@ export default function ActivityPage() {
                   "px-3 py-1.5 rounded-full text-[11px] font-mono uppercase tracking-wider transition-colors",
                   railFilter === r
                     ? "bg-brand text-white"
-                    : "bg-white text-ink-700 border border-ink-100"
+                    : "bg-surface text-ink-700 border border-ink-100"
                 )}
               >
                 {r === "all" ? "All rails" : r}

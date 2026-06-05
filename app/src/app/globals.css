@@ -2,20 +2,47 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ── Light theme (default) ──────────────────────────────────────────── */
 :root {
+  --canvas: 248 250 252;     /* #F8FAFC */
+  --surface: 255 255 255;    /* #FFFFFF — cards, sheets, top/tab bars */
+  --ink: 11 18 32;           /* #0B1220 */
+  --ink-900: 11 18 32;
+  --ink-800: 30 41 59;       /* #1E293B */
+  --ink-700: 51 65 85;       /* #334155 */
+  --ink-500: 100 116 139;    /* #64748B */
+  --ink-300: 203 213 225;    /* #CBD5E1 */
+  --ink-100: 241 245 249;    /* #F1F5F9 */
+  --brand-50: 240 245 251;   /* #F0F5FB */
+  --brand-100: 220 232 246;  /* #DCE8F6 */
+
+  /* Legacy literals still used by inline styles */
   --blue: #075abd;
   --deep: #054086;
-  --ink: #0b1220;
-  --canvas: #f8fafc;
+}
+
+/* ── Dark theme ─────────────────────────────────────────────────────── */
+.dark {
+  --canvas: 2 22 46;         /* #02162E — deep navy */
+  --surface: 17 31 55;       /* darker slate for cards */
+  --ink: 226 232 240;        /* #E2E8F0 — body text */
+  --ink-900: 248 250 252;    /* brightest text */
+  --ink-800: 226 232 240;
+  --ink-700: 203 213 225;    /* secondary text */
+  --ink-500: 148 163 184;    /* muted */
+  --ink-300: 71 85 105;      /* dividers / placeholders */
+  --ink-100: 30 41 59;       /* borders, subtle bg tint */
+  --brand-50: 4 42 82;       /* dim navy tint where brand-50 was a wash */
+  --brand-100: 6 60 116;
 }
 
 html,
 body {
-  background: #0b1220;
+  background: rgb(var(--canvas));
 }
 
 body {
-  color: var(--ink);
+  color: rgb(var(--ink));
   font-feature-settings: "ss01", "cv11";
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
@@ -38,7 +65,8 @@ body {
   }
 }
 
-/* Phone frame outside */
+/* Phone frame outside backdrop — kept dark navy in both themes since it's
+ * just the area around the phone bezel. */
 .outside-bg {
   background:
     radial-gradient(800px 400px at 80% 0%, rgba(34, 211, 238, 0.06), transparent 60%),

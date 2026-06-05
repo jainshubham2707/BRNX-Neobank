@@ -101,7 +101,7 @@ export default function InvestPage() {
                 "px-3.5 py-1.5 rounded-full text-[12px] font-semibold transition-colors",
                 filter === t.key
                   ? "bg-ink text-white"
-                  : "bg-white text-ink-700 border border-ink-100"
+                  : "bg-surface text-ink-700 border border-ink-100"
               )}
               aria-label={t.aria}
             >

@@ -321,7 +321,7 @@ export default function EarnPage() {
                     className={cn(
                       "py-2 rounded-xl text-[13px] font-display font-semibold transition-colors",
                       manageMode === m
-                        ? "bg-white text-ink shadow-soft"
+                        ? "bg-surface text-ink shadow-soft"
                         : "text-ink-500"
                     )}
                   >

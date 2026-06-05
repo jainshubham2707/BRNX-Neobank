@@ -118,7 +118,7 @@ const tabs: Tab[] = [
 export function TabBar() {
   const pathname = usePathname() ?? "";
   return (
-    <nav className="sticky bottom-0 z-30 bg-white/95 backdrop-blur border-t border-ink-100 pb-[max(env(safe-area-inset-bottom),6px)] pt-1.5">
+    <nav className="sticky bottom-0 z-30 bg-surface/95 backdrop-blur border-t border-ink-100 pb-[max(env(safe-area-inset-bottom),6px)] pt-1.5">
       <ul className="grid grid-cols-5">
         {tabs.map((t) => {
           const active =

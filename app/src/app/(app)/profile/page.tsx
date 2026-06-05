@@ -12,12 +12,14 @@ import { Chip } from "@/components/ui/Chip";
 import { KeyValue } from "@/components/ui/KeyValue";
 import { usePersona, useUser } from "@/lib/persona-store";
 import { PERSONA_KEYS, PERSONAS } from "@/lib/mock-data/personas";
+import { useTheme } from "@/lib/theme";
 import { cn } from "@/lib/cn";
 
 export default function ProfilePage() {
   const router = useRouter();
   const user = useUser();
   const { personaKey, setPersonaKey } = usePersona();
+  const { theme, toggle: toggleTheme } = useTheme();
   const [exporting, setExporting] = useState(false);
   const [revealedKey, setRevealedKey] = useState(false);
 
@@ -165,6 +167,26 @@ export default function ProfilePage() {
 
         <Section title="App" className="px-0">
           <Card padded={false}>
+            <div className="flex items-center justify-between py-3 px-4 border-b border-ink-100">
+              <span className="text-[13.5px] text-ink-700">Dark mode</span>
+              <button
+                role="switch"
+                aria-checked={theme === "dark"}
+                aria-label="Toggle dark mode"
+                onClick={toggleTheme}
+                className={cn(
+                  "w-11 h-6 rounded-full transition-colors relative",
+                  theme === "dark" ? "bg-brand" : "bg-ink-300"
+                )}
+              >
+                <span
+                  className={cn(
+                    "absolute top-0.5 w-5 h-5 rounded-full bg-white shadow transition-all",
+                    theme === "dark" ? "left-[22px]" : "left-0.5"
+                  )}
+                />
+              </button>
+            </div>
             <Row label="Notifications" value="On" />
             <Row label="Region" value="UAE" />
             <Row label="Version" value="0.1.0 · mock" mono />

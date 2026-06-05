@@ -337,7 +337,7 @@ function MarketLogo({
   }
 
   return (
-    <div className="w-10 h-10 rounded-xl bg-white border border-ink-100 flex items-center justify-center shrink-0 overflow-hidden">
+    <div className="w-10 h-10 rounded-xl bg-surface border border-ink-100 flex items-center justify-center shrink-0 overflow-hidden">
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src={src}
