@@ -1,0 +1,24 @@
+{
+  "name": "brnx-video",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "remotion studio",
+    "build": "remotion render BrnxJourney out/brnx-journey.mp4",
+    "build:webm": "remotion render BrnxJourney out/brnx-journey.webm --codec=vp8",
+    "still": "remotion still BrnxJourney out/still.png"
+  },
+  "dependencies": {
+    "@remotion/cli": "4.0.232",
+    "@remotion/google-fonts": "4.0.232",
+    "@remotion/transitions": "4.0.232",
+    "react": "19.0.0",
+    "react-dom": "19.0.0",
+    "remotion": "4.0.232"
+  },
+  "devDependencies": {
+    "@types/react": "19.0.1",
+    "@types/react-dom": "19.0.1",
+    "typescript": "5.7.2"
+  }
+}
